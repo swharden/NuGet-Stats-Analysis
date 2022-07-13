@@ -33,6 +33,7 @@ partial class Form1
             this.cbPalette = new System.Windows.Forms.ComboBox();
             this.cbLog = new System.Windows.Forms.CheckBox();
             this.nudThickness = new System.Windows.Forms.NumericUpDown();
+            this.cbAlign = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudThickness)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,11 +100,23 @@ partial class Form1
             0});
             this.nudThickness.ValueChanged += new System.EventHandler(this.nudThickness_ValueChanged);
             // 
+            // cbAlign
+            // 
+            this.cbAlign.AutoSize = true;
+            this.cbAlign.Location = new System.Drawing.Point(405, 417);
+            this.cbAlign.Name = "cbAlign";
+            this.cbAlign.Size = new System.Drawing.Size(54, 19);
+            this.cbAlign.TabIndex = 5;
+            this.cbAlign.Text = "Align";
+            this.cbAlign.UseVisualStyleBackColor = true;
+            this.cbAlign.CheckedChanged += new System.EventHandler(this.cbAlign_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbAlign);
             this.Controls.Add(this.nudThickness);
             this.Controls.Add(this.cbLog);
             this.Controls.Add(this.cbPalette);
@@ -124,4 +137,5 @@ partial class Form1
     private ComboBox cbPalette;
     private CheckBox cbLog;
     private NumericUpDown nudThickness;
+    private CheckBox cbAlign;
 }

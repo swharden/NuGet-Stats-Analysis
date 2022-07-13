@@ -13,6 +13,7 @@ namespace NGSA.App
     {
         public readonly string Path;
         public readonly double[] Xs;
+        public readonly double[] DeltaXs;
         public readonly double[] Ys;
         public readonly double[] LogYs;
         public override string ToString() => System.IO.Path.GetFileNameWithoutExtension(Path);
@@ -38,12 +39,13 @@ namespace NGSA.App
                 xs.Add(DateTime.Parse(weekValue).ToOADate());
             }
 
+            if (!xs.Any())
+                throw new InvalidDataException($"{Path} contains no valid records");
+
             Xs = xs.ToArray();
             Ys = ys.ToArray();
-            LogYs = ys.Select(x => Math.Log10(x)).ToArray();
-
-            if (Xs.Length == 0)
-                throw new InvalidDataException($"{Path} contains no valid records");
+            LogYs = ys.Select(y => Math.Log10(y)).ToArray();
+            DeltaXs = xs.Select(x => x - xs[0]).ToArray();
         }
     }
 }

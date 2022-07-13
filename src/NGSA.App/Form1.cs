@@ -39,6 +39,8 @@ public partial class Form1 : Form
 
     private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e) => UpdatePlot();
 
+    private void cbAlign_CheckedChanged(object sender, EventArgs e) => UpdatePlot();
+
     private void UpdatePlot()
     {
         formsPlot1.Plot.Palette = ScottPlot.Palette.GetPalettes().First(x => x.Name == cbPalette.SelectedItem.ToString());
@@ -47,7 +49,9 @@ public partial class Form1 : Form
 
         foreach (JsonHistoryFile jf in lbPackages.CheckedItems)
         {
-            var sig = formsPlot1.Plot.AddSignalXY(jf.Xs, cbLog.Checked ? jf.LogYs : jf.Ys);
+            var sig = formsPlot1.Plot.AddSignalXY(
+                xs: cbAlign.Checked ? jf.DeltaXs : jf.Xs,
+                ys: cbLog.Checked ? jf.LogYs : jf.Ys);
             sig.Label = jf.ToString();
             sig.LineWidth = (int)(nudThickness.Value);
         }
@@ -58,7 +62,8 @@ public partial class Form1 : Form
 
         formsPlot1.Plot.YAxis.TickLabelFormat(yTickFormatter);
         formsPlot1.Plot.YAxis.MinorLogScale(cbLog.Checked);
-
+        formsPlot1.Plot.XAxis.Label(cbAlign.Checked ? "Days Since First Upload" : "Update Date");
+        formsPlot1.Plot.XAxis.DateTimeFormat(!cbAlign.Checked);
 
         formsPlot1.Plot.AxisAuto();
         formsPlot1.Plot.Legend(true, ScottPlot.Alignment.UpperLeft);
