@@ -28,11 +28,100 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
-        this.Text = "Form1";
+            this.formsPlot1 = new ScottPlot.FormsPlot();
+            this.lbPackages = new System.Windows.Forms.CheckedListBox();
+            this.cbPalette = new System.Windows.Forms.ComboBox();
+            this.cbLog = new System.Windows.Forms.CheckBox();
+            this.nudThickness = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nudThickness)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // formsPlot1
+            // 
+            this.formsPlot1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.formsPlot1.Location = new System.Drawing.Point(167, 12);
+            this.formsPlot1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.formsPlot1.Name = "formsPlot1";
+            this.formsPlot1.Size = new System.Drawing.Size(620, 397);
+            this.formsPlot1.TabIndex = 0;
+            // 
+            // lbPackages
+            // 
+            this.lbPackages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbPackages.CheckOnClick = true;
+            this.lbPackages.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbPackages.FormattingEnabled = true;
+            this.lbPackages.Location = new System.Drawing.Point(12, 12);
+            this.lbPackages.Name = "lbPackages";
+            this.lbPackages.Size = new System.Drawing.Size(148, 412);
+            this.lbPackages.TabIndex = 1;
+            this.lbPackages.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // cbPalette
+            // 
+            this.cbPalette.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbPalette.FormattingEnabled = true;
+            this.cbPalette.Location = new System.Drawing.Point(167, 415);
+            this.cbPalette.Name = "cbPalette";
+            this.cbPalette.Size = new System.Drawing.Size(121, 23);
+            this.cbPalette.TabIndex = 2;
+            this.cbPalette.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // cbLog
+            // 
+            this.cbLog.AutoSize = true;
+            this.cbLog.Location = new System.Drawing.Point(353, 417);
+            this.cbLog.Name = "cbLog";
+            this.cbLog.Size = new System.Drawing.Size(46, 19);
+            this.cbLog.TabIndex = 3;
+            this.cbLog.Text = "Log";
+            this.cbLog.UseVisualStyleBackColor = true;
+            this.cbLog.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // nudThickness
+            // 
+            this.nudThickness.Location = new System.Drawing.Point(294, 415);
+            this.nudThickness.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudThickness.Name = "nudThickness";
+            this.nudThickness.Size = new System.Drawing.Size(53, 23);
+            this.nudThickness.TabIndex = 4;
+            this.nudThickness.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.nudThickness.ValueChanged += new System.EventHandler(this.nudThickness_ValueChanged);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.nudThickness);
+            this.Controls.Add(this.cbLog);
+            this.Controls.Add(this.cbPalette);
+            this.Controls.Add(this.lbPackages);
+            this.Controls.Add(this.formsPlot1);
+            this.Name = "Form1";
+            this.Text = "NuGet Stats Analyzer";
+            ((System.ComponentModel.ISupportInitialize)(this.nudThickness)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
     }
 
     #endregion
+
+    private ScottPlot.FormsPlot formsPlot1;
+    private CheckedListBox lbPackages;
+    private ComboBox cbPalette;
+    private CheckBox cbLog;
+    private NumericUpDown nudThickness;
 }
