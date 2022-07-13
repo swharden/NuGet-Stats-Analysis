@@ -1,0 +1,5 @@
+### Search for official package IDs
+GET https://nugettrends.com/api/package/search?q=scottplot HTTP/1.1
+
+### Get date stats for a package
+GET https://nugettrends.com/api/package/history/ScottPlot?months=12
