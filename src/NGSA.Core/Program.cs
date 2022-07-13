@@ -2,7 +2,22 @@
 {
     public static void Main()
     {
-        DownloadHistory("scottplot", "./", 12).Wait();
+        string[] packages =
+        {
+            // capitol sensitive
+            "ScottPlot",
+            "OxyPlot.Core",
+            "ZedGraph",
+            "LiveCharts",
+        };
+
+        string dataDir = Path.GetFullPath(Path.Combine("./", "data"));
+        Directory.CreateDirectory(dataDir);
+
+        foreach (string package in packages)
+        {
+            DownloadHistory(package, dataDir, 120).Wait();
+        }
     }
 
     public static async Task DownloadHistory(string package, string saveFolder, int months, bool overwrite = false)
@@ -13,7 +28,7 @@
             Console.WriteLine($"Exists: {saveFilePath}");
             return;
         }
-        string url = $"https://nugettrends.com/api/package/history/{package}?months{months}";
+        string url = $"https://nugettrends.com/api/package/history/{package}?months={months}";
         using HttpClient client = new();
         using HttpResponseMessage response = await client.GetAsync(url);
         using HttpContent content = response.Content;
