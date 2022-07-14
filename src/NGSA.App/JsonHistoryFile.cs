@@ -16,6 +16,7 @@ namespace NGSA.App
         public readonly double[] DeltaXs;
         public readonly double[] Ys;
         public readonly double[] LogYs;
+        public readonly double[] YsPerWeek;
         public override string ToString() => System.IO.Path.GetFileNameWithoutExtension(Path);
 
         public JsonHistoryFile(string path)        {
@@ -46,6 +47,11 @@ namespace NGSA.App
             Ys = ys.ToArray();
             LogYs = ys.Select(y => Math.Log10(y)).ToArray();
             DeltaXs = xs.Select(x => x - xs[0]).ToArray();
+            YsPerWeek = Enumerable.Range(0, ys.Count - 1)
+                .Select(i => ys[i + 1] - ys[i])
+                .Concat(new double[] { 0 })
+                .ToArray();
+            YsPerWeek[^1] = YsPerWeek[^2];
         }
     }
 }

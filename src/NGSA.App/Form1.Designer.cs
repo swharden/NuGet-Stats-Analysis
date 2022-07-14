@@ -34,6 +34,7 @@ partial class Form1
             this.cbLog = new System.Windows.Forms.CheckBox();
             this.nudThickness = new System.Windows.Forms.NumericUpDown();
             this.cbAlign = new System.Windows.Forms.CheckBox();
+            this.cbRate = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudThickness)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,11 +112,23 @@ partial class Form1
             this.cbAlign.UseVisualStyleBackColor = true;
             this.cbAlign.CheckedChanged += new System.EventHandler(this.cbAlign_CheckedChanged);
             // 
+            // cbRate
+            // 
+            this.cbRate.AutoSize = true;
+            this.cbRate.Location = new System.Drawing.Point(465, 417);
+            this.cbRate.Name = "cbRate";
+            this.cbRate.Size = new System.Drawing.Size(49, 19);
+            this.cbRate.TabIndex = 6;
+            this.cbRate.Text = "Rate";
+            this.cbRate.UseVisualStyleBackColor = true;
+            this.cbRate.CheckedChanged += new System.EventHandler(this.cbRate_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbRate);
             this.Controls.Add(this.cbAlign);
             this.Controls.Add(this.nudThickness);
             this.Controls.Add(this.cbLog);
@@ -138,4 +151,5 @@ partial class Form1
     private CheckBox cbLog;
     private NumericUpDown nudThickness;
     private CheckBox cbAlign;
+    private CheckBox cbRate;
 }

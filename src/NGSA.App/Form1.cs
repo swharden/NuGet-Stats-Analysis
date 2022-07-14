@@ -41,6 +41,8 @@ public partial class Form1 : Form
 
     private void cbAlign_CheckedChanged(object sender, EventArgs e) => UpdatePlot();
 
+    private void cbRate_CheckedChanged(object sender, EventArgs e) => UpdatePlot();
+
     private void UpdatePlot()
     {
         formsPlot1.Plot.Palette = ScottPlot.Palette.GetPalettes().First(x => x.Name == cbPalette.SelectedItem.ToString());
@@ -49,9 +51,13 @@ public partial class Form1 : Form
 
         foreach (JsonHistoryFile jf in lbPackages.CheckedItems)
         {
-            var sig = formsPlot1.Plot.AddSignalXY(
-                xs: cbAlign.Checked ? jf.DeltaXs : jf.Xs,
-                ys: cbLog.Checked ? jf.LogYs : jf.Ys);
+            double[] xs = cbAlign.Checked ? jf.DeltaXs : jf.Xs;
+
+            double[] ys = cbRate.Checked ? jf.YsPerWeek : jf.Ys;
+            if (cbLog.Checked)
+                ys = ys.Select(x => Math.Log10(x)).ToArray();
+
+            var sig = formsPlot1.Plot.AddSignalXY(xs, ys);
             sig.Label = jf.ToString();
             sig.LineWidth = (int)(nudThickness.Value);
         }
@@ -60,6 +66,7 @@ public partial class Form1 : Form
             ? (y) => Math.Pow(10, y).ToString("N0")
             : (y) => y.ToString("N0");
 
+        formsPlot1.Plot.YAxis.Label(cbRate.Checked ? "Downloads / week" : "Total Downloads");
         formsPlot1.Plot.YAxis.TickLabelFormat(yTickFormatter);
         formsPlot1.Plot.YAxis.MinorLogScale(cbLog.Checked);
         formsPlot1.Plot.XAxis.Label(cbAlign.Checked ? "Days Since First Upload" : "Update Date");
